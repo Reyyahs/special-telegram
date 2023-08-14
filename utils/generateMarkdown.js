@@ -1,48 +1,138 @@
-// TODO: Create a function that returns a license badge based on which license is passed in
-// If there is no license, return an empty string
-function renderLicenseBadge(license) {
-  if (license === "None") {
+
+// Returns URL that generate badge for selected license
+function renderLicenseBadge(license) 
+{
+    if (license === "None")
+    {
+      return "";
+    }
+
+    else
+    {
+      return `![License badge](https://img.shields.io/badge/License-${license}-blue)`;
+    }
+}
+
+// Returns URL to selected license details page
+function renderLicenseLink(license)
+{
+  if (license === "None")
+  {
     return "";
-  } else {
-    return `![License badge](https://img.shields.io/badge/License-${encodeURIComponent(license)}-blue)`;
+  }
+
+  else if (license === "Apache License 2.0")
+  {
+    return `https://choosealicense.com/licenses/apache-2.0`;
+  }
+
+  else if (license === "Boost Software License 1.0")
+  {
+    return `https://choosealicense.com/licenses/bsl-1.0`;
+  }
+
+  else if (license === "GNU AGPLv3")
+  {
+    return `https://choosealicense.com/licenses/agpl-3.0`;
+  }
+
+  else if (license === "GNU GPLv3")
+  {
+    return `https://choosealicense.com/licenses/gpl-3.0`;
+  }
+
+  else if (license === "GNU LGPLv3")
+  {
+    return `https://choosealicense.com/licenses/lgpl-3.0`;
+  }
+
+  else if (license === "MIT")
+  {
+    return `https://choosealicense.com/licenses/mit`;
+  }
+
+  else if (license === "Mozilla Public License 2.0")
+  {
+    return `https://choosealicense.com/licenses/mpl-2.0`;
+  }
+
+  else
+  {
+    return `https://choosealicense.com/licenses/unlicense`;
   }
 }
 
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
-function renderLicenseLink(license) {
-  const licenseUrls = {
-    "Apache License 2.0": "apache-2.0",
-    "Boost Software License 1.0": "bsl-1.0",
-    "GNU AGPLv3": "agpl-3.0",
-    "GNU GPLv3": "gpl-3.0",
-    "GNU LGPLv3": "lgpl-3.0",
-    "MIT": "mit",
-    "Mozilla Public License 2.0": "mpl-2.0",
-    "Unlicense": "unlicense"
-  };
-
-  if (license === "None" || !licenseUrls.hasOwnProperty(license)) {
+// Returns name of selected license
+function renderLicenseSection(license)
+{
+  if (license === "None")
+  {
     return "";
-  } else {
-    return `https://choosealicense.com/licenses/${licenseUrls[license]}`;
+  }
+
+  else
+  {
+    return `This project uses the ${license} license`;
   }
 }
 
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
-function renderLicenseSection(license) {
-  if (license === "None") {
-    return "";
-  } else {
-    return `This project is licensed under the ${license}.`;
-  }
-}
-// TODO: Create a function to generate markdown for README
+// Generates README file from user input
 function generateMarkdown(data) {
-  return `# ${data.title}
 
-`;
+  const licenseBadge = renderLicenseBadge(data.license);
+
+  const licenseLink = renderLicenseLink(data.license);
+
+  const selectedLicense = renderLicenseSection(data.license);
+
+  return `
+  # ${data.title}
+
+  ${licenseBadge}
+
+  ## Description
+
+  ${data.description}
+
+  ## Table of Contents
+
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [License](#license)
+  - [Contributing](#contributing)
+  - [Tests](#tests)
+  - [Questions](#questions)
+
+  ## Installation
+
+  ${data.installation}
+
+  ## Usage
+
+  ${data.usage}
+  
+  ## License
+
+  ${selectedLicense}
+
+  ${licenseLink}
+
+  ## Contributing
+
+  ${data.contribution}
+
+  ## Tests
+
+  ${data.test}
+  
+  ## Questions
+
+  My GitHub profile: https://github.com/${data.username}
+
+  For answers to any questions regarding the project, please email me at: ${data.email}`;
 }
 
-module.exports = generateMarkdown;
+// Make the generateMarkdown function available for export
+module.exports = {
+  generateMarkdown
+};
