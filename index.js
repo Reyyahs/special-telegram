@@ -22,6 +22,11 @@ function getUserInput() {
         },
         {
             type: 'input',
+            message: 'Enter usage instructions:',
+            name: 'usage',
+        },
+        {
+            type: 'input',
             message: 'Specify contribution guidelines:',
             name: 'contribution',
         },
