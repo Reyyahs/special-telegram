@@ -53,7 +53,15 @@ function getUserInput() {
 }
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile(fileName, data) {
+    fs.writeFile(fileName, data, (err) => {
+        if (err) {
+            console.error(err);
+        } else {
+            console.log('README file has been generated successfully.');
+        }
+    });
+}
 
 // Initialize the application
 function init() {
