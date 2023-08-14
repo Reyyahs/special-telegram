@@ -32,7 +32,7 @@ function getUserInput() {
         {
             type: 'list',
             message: 'Choose project license type:',
-            choices: ['MIT License'],
+            choices: ['Apache License 2.0', 'Boost Software License 1.0', 'GNU AGPLv3', 'GNU GPLv3', 'GNU LGPLv3', 'MIT', 'Mozilla Public License 2.0', 'The Unlicense', 'None'],
             name: 'license',
         },
         {
